@@ -4,7 +4,7 @@ export const SEARCH_CITIES = 'SEARCH_CITIES';
 export const GET_SHOWS = 'GET_SHOWS';
 
 export function searchCities(city) {
-  const url = `http://localhost:3000/api/v1/locations?query=${city}&per_page=3`;
+  const url = `https://showhopper-api.herokuapp.com/api/v1/locations?query=${city}&per_page=3`;
   const request = axios.get(url);
 
   return {
@@ -14,7 +14,7 @@ export function searchCities(city) {
 }
 
 export function getShows(metroId) {
-  const url = `http://localhost:3000/api/v1/shows?metro_area_id=${metroId}&per_page=3`;
+  const url = `https://showhopper-api.herokuapp.com/api/v1/shows?metro_area_id=${metroId}&per_page=3`;
   const request = axios.get(url);
 
   return {
