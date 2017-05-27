@@ -17,7 +17,7 @@ class CitiesList extends Component {
     event.preventDefault()
 
     this.props.positionMap(cityData)
-    // this.props.getShows(metroId);
+    this.props.getShows(metroId);
   }
 
   renderCityData(cityData) {
@@ -40,7 +40,7 @@ function mapStateToProps({ cities }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ positionMap }, dispatch);
+  return bindActionCreators({ positionMap, getShows }, dispatch);
 }
 
 

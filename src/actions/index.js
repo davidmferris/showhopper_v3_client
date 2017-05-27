@@ -15,7 +15,7 @@ export function searchCities(city) {
 }
 
 export function getShows(metroId) {
-  const url = `https://showhopper-api.herokuapp.com/api/v1/shows?metro_area_id=${metroId}&per_page=3`;
+  const url = `https://showhopper-api.herokuapp.com/api/v1/shows?metro_area_id=${metroId}&per_page=20`;
   const request = axios.get(url);
 
   return {

@@ -10,7 +10,6 @@ class Map extends Component {
     }
   }
 
-
   componentDidMount() {
     this.setState({
       mapObj: new google.maps.Map(this.refs.map, {
@@ -19,16 +18,43 @@ class Map extends Component {
     })
   }
 
-  componentDidUpdate() {
-    if (this.props.map.lat && this.props.map.lng) {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.map !== nextProps.map) { this.repositionMap(nextProps.map) };
 
-      let coords = {
-        lat: this.props.map.lat,
-        lng: this.props.map.lng
-      };
+    if (nextProps.shows.length) { this.drawShowMarkers(nextProps.shows) }
+  }
 
-      this.state.mapObj.setCenter(coords);
+  drawShowMarkers(shows) {
+    for (let show of shows) {
+      let location = {
+        lat: show.venue.lat,
+        lng: show.venue.lng
+      }
+
+      let infowindow = new google.maps.InfoWindow({
+        content: `<h1>${show.performance[0].artist.displayName}</h1>`,
+        maxWidth: 500
+      });
+
+      let marker = new google.maps.Marker({
+        position: location,
+        map: this.state.mapObj,
+        animation: google.maps.Animation.DROP,
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(this.state.mapObj, marker);
+      }.bind(this));
+    }
+  }
+
+  repositionMap(mapData) {
+    let coords = {
+      lat: mapData.lat,
+      lng: mapData.lng
     };
+
+    this.state.mapObj.setCenter(coords);
   }
 
   render() {
@@ -36,8 +62,8 @@ class Map extends Component {
   }
 }
 
-function mapStateToProps({ map }) {
-  return { map };
+function mapStateToProps({ map, shows }) {
+  return { map, shows };
 }
 
 export default connect(mapStateToProps)(Map);
