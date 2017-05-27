@@ -1,51 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ShowMarker from '../components/show_marker';
 
 class Map extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      mapObj: {}
-    }
+    this.drawShowMarkers = this.drawShowMarkers.bind(this)
   }
 
   componentDidMount() {
-    this.setState({
-      mapObj: new google.maps.Map(this.refs.map, {
-        zoom: 12
+    navigator.geolocation.getCurrentPosition(function(position) {
+      this.setState({
+        mapObj: new google.maps.Map(this.refs.map, {
+          zoom: 12,
+          mapTypeControl: false,
+          center: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          }
+        })
       })
-    })
+
+    }.bind(this))
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.map !== nextProps.map) { this.repositionMap(nextProps.map) };
-
-    if (nextProps.shows.length) { this.drawShowMarkers(nextProps.shows) }
+    if (this.props.map !== nextProps.map) {
+      this.repositionMap(nextProps.map)
+    };
   }
 
-  drawShowMarkers(shows) {
-    for (let show of shows) {
-      let location = {
-        lat: show.venue.lat,
-        lng: show.venue.lng
-      }
-
-      let infowindow = new google.maps.InfoWindow({
-        content: `<h1>${show.performance[0].artist.displayName}</h1>`,
-        maxWidth: 500
-      });
-
-      let marker = new google.maps.Marker({
-        position: location,
-        map: this.state.mapObj,
-        animation: google.maps.Animation.DROP,
-      });
-
-      marker.addListener('click', function() {
-        infowindow.open(this.state.mapObj, marker);
-      }.bind(this));
-    }
+  drawShowMarkers(showData) {
+    return (
+      <ShowMarker key={showData.id} show={showData} mapObj={this.state.mapObj} />
+    )
   }
 
   repositionMap(mapData) {
@@ -58,7 +47,12 @@ class Map extends Component {
   }
 
   render() {
-    return <div className="map" ref="map" />;
+    return (
+      <div>
+        <div className="map" ref="map"></div>
+        {this.props.shows.map(this.drawShowMarkers)}
+      </div>
+    );
   }
 }
 

@@ -8,6 +8,7 @@ class CitiesList extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {}
     this.renderCityData = this.renderCityData.bind(this);
     this.onLinkClick = this.onLinkClick.bind(this);
   }
@@ -21,16 +22,18 @@ class CitiesList extends Component {
   }
 
   renderCityData(cityData) {
+    let stateName = cityData.city.state ? cityData.city.state.displayName : cityData.city.country.displayName;
+
     return (
-      <li key={cityData.metroArea.id}>
-        <a onClick={() => this.onLinkClick(cityData)}>{cityData.city.displayName}</a>
+      <li className="list-group-item" key={cityData.city.id}>
+        <a onClick={() => this.onLinkClick(cityData)}>{cityData.city.displayName}, {stateName}</a>
       </li>
     )
   }
 
   render() {
     return (
-      <ol>{this.props.cities.map(this.renderCityData)}</ol>
+      <ul className="cities-list list-group">{this.props.cities.map(this.renderCityData)}</ul>
     )
   }
 }
