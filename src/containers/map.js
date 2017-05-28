@@ -11,16 +11,22 @@ class Map extends Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(function(position) {
+      const icon = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+      let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
       this.setState({
         mapObj: new google.maps.Map(this.refs.map, {
           zoom: 12,
           mapTypeControl: false,
-          center: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          }
+          center: location
         })
       })
+
+      new google.maps.Marker({
+        position: location,
+        map: this.state.mapObj,
+        icon: icon
+      });
 
     }.bind(this))
   }
