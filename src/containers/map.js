@@ -10,9 +10,9 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    // navigator.geolocation.getCurrentPosition(function(position) {
       const icon = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
-      let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      let location = new google.maps.LatLng(45.512794, -122.679565);
 
       this.setState({
         mapObj: new google.maps.Map(this.refs.map, {
@@ -22,13 +22,13 @@ class Map extends Component {
         })
       })
 
-      new google.maps.Marker({
-        position: location,
-        map: this.state.mapObj,
-        icon: icon
-      });
+      // new google.maps.Marker({
+      //   position: location,
+      //   map: this.state.mapObj,
+      //   icon: icon
+      // });
 
-    }.bind(this))
+    // }.bind(this))
   }
 
   componentWillReceiveProps(nextProps) {
