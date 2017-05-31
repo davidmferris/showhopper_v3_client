@@ -22,14 +22,14 @@ export default class ShowMarker extends Component {
         maxWidth: 500,
       });
 
-      let marker = new google.maps.Marker({
+      this.props.show.marker = new google.maps.Marker({
         position: location,
         map: this.props.mapObj,
         animation: google.maps.Animation.DROP,
       });
 
-      marker.addListener('click', function() {
-        infowindow.open(this.props.mapObj, marker);
+      this.props.show.marker.addListener('click', function() {
+        infowindow.open(this.props.mapObj, this.props.show.marker);
       }.bind(this));
     }
 
