@@ -11,9 +11,11 @@
 
 .sidebar {
   margin-top: 1em;
+  max-height: 700px;
+  overflow: scroll;
 }
 
-.cities-list {
+.cities-list, .shows-list {
   z-index: 2;
   position: relative;
   background: white;
