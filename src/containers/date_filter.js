@@ -22,6 +22,8 @@ class DateFilter extends Component {
             onClick={() => this.getShows(0)}
             className="btn btn-primary-outline btn-block">
             Today
+            <br/>
+              <small>{moment().format('ddd, MMM Do')}</small>
           </button>
         </div>
         <div className="col-xs-4">
@@ -30,6 +32,8 @@ class DateFilter extends Component {
             onClick={() => this.getShows(1)}
             className="btn btn-primary-outline btn-block">
             Tomorrow
+            <br/>
+              <small>{moment().add(1, 'days').format('ddd, MMM Do')}</small>
           </button>
         </div>
         <div className="col-xs-4">
@@ -38,6 +42,8 @@ class DateFilter extends Component {
             onClick={() => this.getShows(2)}
             className="btn btn-primary-outline btn-block">
             Next Day
+            <br />
+              <small>{moment().add(2, 'days').format('ddd, MMM Do')}</small>
           </button>
         </div>
       </div>
