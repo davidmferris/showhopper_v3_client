@@ -26,17 +26,19 @@ export default class ShowsListItem extends Component{
     let headliner = this.props.show.performance.splice(0, 1)[0]
 
     return(
-      <li className="list-group-item" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} key={this.props.show.id}>
-        <ul className="list-group list-unstyled">
-          <li className="text-muted">{headliner.artist.displayName}</li>
+      <a href={this.props.show.uri} target="_blank">
+        <li className="list-group-item" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} key={this.props.show.id}>
+          <ul className="list-group list-unstyled">
+            <li className="text-muted">{headliner.artist.displayName}</li>
 
-          {this.props.show.performance.map(this.displayArtistNames)}
+            {this.props.show.performance.map(this.displayArtistNames)}
 
-          <li>
-            <em className="small text-primary">{this.props.show.venue.displayName}</em>
-          </li>
-        </ul>
-      </li>
+            <li>
+              <em className="small text-primary">{this.props.show.venue.displayName}</em>
+            </li>
+          </ul>
+        </li>
+      </a>
     )
   }
 }

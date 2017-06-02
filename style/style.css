@@ -12,12 +12,22 @@
 .sidebar {
   margin-top: 1em;
   max-height: 700px;
-  overflow: scroll;
+  z-index: 2;
+  /*overflow: scroll;*/
 }
 
-.cities-list, .shows-list {
-  z-index: 2;
-  position: relative;
+.show-container {
+  margin-top: 20px;
   background: white;
+}
+
+.date-filter-buttons {
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.shows-list {
+  max-height: 600px;
+  overflow: auto;
 }
 

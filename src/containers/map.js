@@ -21,7 +21,6 @@ class Map extends Component {
           center: location
         })
       })
-
       // new google.maps.Marker({
       //   position: location,
       //   map: this.state.mapObj,

@@ -46,5 +46,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ positionMap, getShows }, dispatch);
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);
