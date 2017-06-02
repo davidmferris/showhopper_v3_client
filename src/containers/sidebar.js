@@ -15,7 +15,7 @@ class Sidebar extends Component {
       <div className="sidebar container-fluid col-xs-4">
         <div className="row">
           <SearchBar />
-          {this.props.shows.length ? null : <CitiesList />}
+          {this.props.displayShowsList ? null : <CitiesList />}
         </div>
         <div className="row">
           <div className="show-container">

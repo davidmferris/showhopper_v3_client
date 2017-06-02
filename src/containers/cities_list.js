@@ -28,9 +28,9 @@ class CitiesList extends Component {
     let stateName = cityData.city.state ? cityData.city.state.displayName : cityData.city.country.displayName;
 
     return (
-      <li className="list-group-item" key={cityData.city.id}>
-        <a onClick={() => this.onLinkClick(cityData)}>{cityData.city.displayName}, {stateName}</a>
-      </li>
+      <a href="#" onClick={() => this.onLinkClick(cityData)}>
+        <li className="list-group-item" key={cityData.city.id}>{cityData.city.displayName}, {stateName}</li>
+      </a>
     )
   }
 
