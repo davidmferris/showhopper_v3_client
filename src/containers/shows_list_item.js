@@ -24,12 +24,13 @@ export default class ShowsListItem extends Component{
 
   render () {
     let headliner = this.props.show.performance.splice(0, 1)[0]
+    let displayName = !!headliner ? headliner.artist.displayName : this.props.show.displayName
 
     return(
       <a href={this.props.show.uri} target="_blank">
         <li className="list-group-item" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} key={this.props.show.id}>
           <ul className="list-group list-unstyled">
-            <li className="text-muted">{headliner.artist.displayName}</li>
+            <li className="text-muted">{displayName}</li>
 
             {this.props.show.performance.map(this.displayArtistNames)}
 
