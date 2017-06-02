@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { searchCities } from '../actions/index';
 import { clearShows } from '../actions/index';
+import { displayShowsList } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class SearchBar extends Component {
     event.preventDefault();
 
     this.props.searchCities(this.state.query).then(function() {
+      this.props.displayShowsList(false);
       this.props.clearShows(this.props.shows);
     }.bind(this));
   }
@@ -44,7 +46,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ searchCities, clearShows }, dispatch);
+  return bindActionCreators({ searchCities, clearShows, displayShowsList }, dispatch);
 }
 
 function mapStateToProps( { shows }) {

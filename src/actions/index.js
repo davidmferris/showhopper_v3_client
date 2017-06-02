@@ -6,6 +6,7 @@ export const SEARCH_CITIES = 'SEARCH_CITIES';
 export const GET_SHOWS = 'GET_SHOWS';
 export const POSITION_MAP = 'POSITION_MAP';
 export const CLEAR_SHOWS = 'CLEAR_SHOWS';
+export const DISPLAY_SHOWS_LIST = 'DISPLAY_SHOWS_LIST';
 
 export function searchCities(city) {
   const url = `https://showhopper-api.herokuapp.com/api/v1/locations?query=${city}&per_page=3`;
@@ -46,5 +47,12 @@ export function clearShows(shows) {
   return {
     type: CLEAR_SHOWS,
     payload: []
+  }
+}
+
+export function displayShowsList(value) {
+  return {
+    type: DISPLAY_SHOWS_LIST,
+    payload: value
   }
 }

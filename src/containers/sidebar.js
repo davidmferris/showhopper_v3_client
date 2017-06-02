@@ -12,14 +12,14 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="sidebar container-fluid col-xs-3">
+      <div className="sidebar container-fluid col-xs-4">
         <div className="row">
           <SearchBar />
           {this.props.shows.length ? null : <CitiesList />}
         </div>
         <div className="row">
           <div className="show-container">
-            {this.props.shows.length ? <DateFilter /> : null}
+            {this.props.displayShowsList ? <DateFilter /> : null}
             <ShowsList />
           </div>
         </div>
@@ -28,8 +28,8 @@ class Sidebar extends Component {
   }
 }
 
-function mapStateToProps( { shows }) {
-  return { shows };
+function mapStateToProps( { shows, displayShowsList }) {
+  return { shows, displayShowsList };
 }
 
 export default connect(mapStateToProps)(Sidebar);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getShows } from '../actions/index';
 import { positionMap } from '../actions/index';
+import { displayShowsList } from '../actions/index';
 
 class CitiesList extends Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class CitiesList extends Component {
     event.preventDefault()
 
     this.props.positionMap(cityData)
-    this.props.getShows(metroId);
+    this.props.getShows(metroId).then(function() {
+      this.props.displayShowsList(true);
+    }.bind(this));
   }
 
   renderCityData(cityData) {
@@ -43,7 +46,7 @@ function mapStateToProps({ cities }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ positionMap, getShows }, dispatch);
+  return bindActionCreators({ positionMap, getShows, displayShowsList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);

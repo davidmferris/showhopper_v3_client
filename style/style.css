@@ -13,7 +13,7 @@
   margin-top: 1em;
   max-height: 700px;
   z-index: 2;
-  /*overflow: scroll;*/
+  min-width: 450px;
 }
 
 .show-container {
